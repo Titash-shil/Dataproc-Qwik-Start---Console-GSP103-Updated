@@ -13,10 +13,8 @@ UNDERLINE_TEXT=$'\033[4m'
 
 clear
 
-
 export ZONE=$(gcloud compute project-info describe \
 --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
-
 
 export REGION=$(gcloud compute project-info describe \
 --format="value(commonInstanceMetadata.items[google-compute-default-region])")
@@ -38,8 +36,6 @@ gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
 gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
   --member serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com \
   --role roles/dataproc.worker
-
-
 
 # Check if the default network exists
 if ! gcloud compute networks describe default --project "$DEVSHELL_PROJECT_ID" &>/dev/null; then
